@@ -1,6 +1,14 @@
-<div id="navbar">
-  <a ></a>
-  <button class="btn">Login</button>
-</div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">H APP</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button></li>
 
+    </ul>
+  </div>
+
+</nav>
+<div *ngIf="loginDisplayBool" id="loginDiv">
+  <p>Login form here</p>
+</div>
 <router-outlet></router-outlet>
