@@ -23,9 +23,56 @@ var UserSchema = new mongoose.Schema({
         minlength: [8, "Passwords must be 8 or more characters"]
     }
 }, {timestamps: true});
-
 mongoose.model('User', UserSchema);
 var User = mongoose.model('User');
+
+var LocationsSchema = new mongoose.Schema({
+    Sunday : {
+        type: String
+    },
+    Monday : {
+        type: String
+    },
+    Tuesday : {
+        type: String
+    },
+    Wednesday : {
+        type: String
+    },
+    Thursday : {
+        type: String
+    },
+    Friday : {
+        type: String
+    },
+    Saturday : {
+        type: String
+    },
+    Duration_Hours : {
+        type: String
+    },
+    Day_Time : {
+        type: String
+    },
+    Meal_Served : {
+        type: String
+    },
+    People_Served : {
+        type: String
+    },
+    Address : {
+        type: String
+    },
+    Location : {
+        type: String
+    },
+    Name_of_Program : {
+        type: String
+    },
+})
+mongoose.model('locations', LocationsSchema);
+var locations = mongoose.model('locations');
+
 
 
 app.post('/register', function(req, res) {
@@ -60,6 +107,17 @@ app.post('/register', function(req, res) {
         }
     });
 });
+
+app.get('/allLocations', function (req, res) {
+    console.log('getting locations in server')
+    locations.find({},function(err, locations) {
+        if(err){
+            console.log("e0rr0r",)
+        }else{
+            res.json({message:'The Locations', locations: locations})
+        }
+    })
+})
 
 app.post('/login', function(req, res) {
     User.findOne({username:req.body.username}, function(err, user) {
