@@ -25,5 +25,6 @@ export class BenTestComponent implements OnInit {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    console.log(this.map);
   }
 }
