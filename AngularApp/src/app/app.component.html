@@ -1,6 +1,8 @@
 <div id="navbar">
-  <a ></a>
-  <button class="btn">Login</button>
+  
+  <button *ngIf="!user" (click)="toggleLoginDisplay()" class="btn">Login</button>
 </div>
-
+<div *ngIf="loginDisplayBool">
+  <p>Login form here</p>
+</div>
 <router-outlet></router-outlet>

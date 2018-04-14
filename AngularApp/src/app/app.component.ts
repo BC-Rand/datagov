@@ -7,8 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   user;
+  loginDisplayBool = false;
 
+  toggleLoginDisplay() {
+    this.loginDisplayBool = !this.loginDisplayBool;
+    console.log(this.loginDisplayBool);
+  }
   login() {
-    
+
   }
 }
