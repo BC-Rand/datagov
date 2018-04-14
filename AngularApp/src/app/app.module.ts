@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { HealthcareComponent } from './healthcare/healthcare.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HealthcareComponent
   ],
   imports: [
     BrowserModule,
