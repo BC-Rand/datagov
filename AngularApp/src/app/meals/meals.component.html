@@ -1,3 +1,21 @@
-<p>
-  meals works!
-</p>
+
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Day and time</th>
+        <th>Meal</th>
+        <th>Who can come</th>
+        <th>location</th>
+        <th>Program</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let location of locations">
+            <td>{{location._id}}</td>
+            <td>{{location.Day_Time}}</td>
+            <td>{{location.Meal_Served}}</td>
+            <td>{{location.People_Served}}</td>
+            <td>{{location.Location}}</td>
+            <td>{{location.Name_of_Program}}</td>
+        </tr>
+    </tbody>
+</table>

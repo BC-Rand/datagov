@@ -5,11 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { MealsComponent } from './meals/meals.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: "full", component: HomeComponent }
+    { path: 'meals', component: MealsComponent },
+    { path: '', pathMatch: 'full', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
+    
