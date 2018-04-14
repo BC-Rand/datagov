@@ -9,6 +9,9 @@
 
 </nav>
 <div *ngIf="loginDisplayBool" id="loginDiv">
-  <p>Login form here</p>
+  <form (submit)="loginForm()">
+      <label for="username">User Name</label>
+    <input type="text">
+  </form>
 </div>
 <router-outlet></router-outlet>
