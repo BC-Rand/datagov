@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
-mongoose.connect('mongodb://localhost/my_first_db');
+// mongoose.connect('mongodb://localhost/my_first_db');
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
