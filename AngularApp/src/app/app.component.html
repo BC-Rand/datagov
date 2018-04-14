@@ -1,17 +1,20 @@
 <nav>
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo">H APP</a>
+  <div class="nav-wrapper black">
+    <a href="/" class="brand-logo">ForHousing</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button></li>
+      <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button>  </li>
 
     </ul>
   </div>
 
 </nav>
-<div *ngIf="loginDisplayBool" id="loginDiv">
+<div *ngIf="loginDisplayBool" id="loginDiv" class="card">
   <form (submit)="loginForm()">
-      <label for="username">User Name</label>
-    <input type="text">
+      <label for="username">Username</label>
+      <input type="text" name="username">
+      <label for="username">Password</label>
+      <input type="text" name="password">
+      <button class="btn waves-effect waves-light right" type="submit"><i class="material-icons">send</i></button>
   </form>
 </div>
 <router-outlet></router-outlet>
