@@ -7,15 +7,23 @@ import { HttpService } from './http.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+<<<<<<< HEAD
 import { MealsComponent } from './meals/meals.component';
 import { HomeComponent } from './home/home.component';
+=======
+import { HealthcareComponent } from './healthcare/healthcare.component';
+>>>>>>> healthcare component added
 
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     MealsComponent,
     HomeComponent
+=======
+    HealthcareComponent
+>>>>>>> healthcare component added
   ],
   imports: [
     BrowserModule,
