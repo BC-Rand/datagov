@@ -38,22 +38,47 @@ export class HealthcareComponent implements OnInit {
         this.hospital = response;
         console.log(this.hospital);
         for(let i = 0; i < (this.hospital).length; i++){
-          this.hospCoordLat = this.hospital[i].location.coordinates[1];
-          this.hospCoordLng = this.hospital[i].location.coordinates[0];
-          let observing = this._httpService.getDistance(this.userCoordLat,this.userCoordLng,this.hospCoordLat,this.hospCoordLng);
+          let hospCoordLat = this.hospital[i].location.coordinates[1];
+          let hospCoordLng = this.hospital[i].location.coordinates[0];
+          console.log("i: " + i, hospCoordLat, hospCoordLng)
+          let observing = this._httpService.getDistance(this.userCoordLat,this.userCoordLng,hospCoordLat,hospCoordLng);
           observing.subscribe(dist => {
-            console.log(dist);
-            console.log("i: " + i);
             let distance = dist['rows'][0].elements[0].distance.text;
             let metric = dist['rows'][0].elements[0].distance.value;
-            console.log(metric);
+            console.log("i: " + i, dist, metric);
             this.hospital[i]['distance'] = distance;
             this.hospital[i]['metric'] = metric;
-            // this.distList.push(distance);
-            console.log(this.hospital);
+            if (this.hospital.length - 1 == i) {
+              setTimeout(this.heapsort(this.hospital), 1000);
+            }
           })
         }
       })
     })
   }
+
+  heapifySubArray(arr, start) {
+    for (let i=Math.floor((arr.length-1-start)/2+start); i >= start; i--) {
+        let secondChildIdx = (i-start+1)*2+start;
+        if (arr[secondChildIdx]!=undefined&&arr[secondChildIdx]['metric']<arr[i]['metric']) {
+            let temp = arr[secondChildIdx]
+            arr[secondChildIdx] = arr[i]
+            arr[i] = temp;
+        }
+        if (arr[secondChildIdx-1]!=undefined&&arr[secondChildIdx-1]['metric']<arr[i]['metric']) {
+            let temp = arr[secondChildIdx-1]
+            arr[secondChildIdx-1] = arr[i]
+            arr[i] = temp;
+        }
+    }
+    return arr;
+}
+heapsort(arr) {
+  console.log("heapsort")
+  console.log(this.hospital)
+    for (let i=0; i<arr.length-1; i++) {
+        arr = this.heapifySubArray(arr, i);
+    }
+    return arr;
+}
 }
