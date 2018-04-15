@@ -1,3 +1,38 @@
+<p>Enter your current street address:</p>
+<form (submit)='getCurrentLocation()'>
+  <label for="street">Street:</label><br>
+  <input type="text" name="street" [(ngModel)]='street'><br>
+  <!-- <label for="zip">Zip Code:</label><br>
+  <input type="text" name="zip" [(ngModel)]='zip'><br> -->
+  <input type="submit" name="Submit">
+</form>
+
+
+
+<p>Select your county</p>
+<form (submit)='getHospitalData()'>
+  <select name="county" id="" [(ngModel)]="county">
+    <option value="King">King</option>
+    <option value="Pierce">Pierce</option>
+    <option value="Snohomish">Snohomish</option>
+    <option value="Franklin">Franklin</option>
+    <option value="Spokane">Spokane</option>
+    <option value="Yakima">Yakima</option>
+    <option value="Walla Walla">Walla Walla</option>
+    <option value="Clark">Clark</option>
+    <option value="Whatcom">Whatcom</option>
+    <option value="Lewis">Lewis</option>
+  </select>
+  <input type="submit" name="Submit" id="">
+</form>
+
 <p>
-  healthcare works!
+  Rehabiltation Facilities near you:
 </p>
+<ol>
+  <li *ngFor="let x of hospital">{{ x.facility_name }}
+    <p>Address: {{x.address_line_1}} {{x.location_city}}, {{x.location_state}} {{x.zip_code}}</p>
+    <p>Phone: {{x.phonenumber}}</p>
+    <p>Facility Type: {{x.ownership_type}}</p>
+  </li> 
+</ol>
