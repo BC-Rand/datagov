@@ -1,11 +1,16 @@
 <div id="container">
-    <div id="gmap" #gmap style="height:400px;"></div>
+    <div id="gmap" #gmap style="height:600px;"></div>
     <br>
     <div class="row">
         <div class="col l5">
             <div class="card z-depth-4">
                 <div class="card-content">
                     <p>My position: {{lat}}, {{lng}}</p>
+                </div>
+            </div>
+            <div class="card z-depth-4">
+                <div class="card-content">
+                    <button (click)="getNearest()">Show nearest 10</button>
                 </div>
             </div>
         </div>
@@ -24,7 +29,7 @@
                             <th>Program</th>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let location of locations">
+                            <tr *ngFor="let location of displayed">
                                 <!-- <td>{{location._id}}</td> -->
                                 <td>{{location.Day_Time}}</td>
                                 <td>{{location.Meal_Served}}</td>
