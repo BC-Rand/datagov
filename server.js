@@ -123,8 +123,8 @@ app.get('/allLocations', function (req, res) {
 })
 
 app.post('/updatecoordinates', function(req, res) {
-    console.log("/updatecoordinates");
-    console.log(req.body);
+    // console.log("/updatecoordinates");
+    // console.log(req.body);
     locations.findOne({_id: req.body._id}, function(err, location) {
         if (location != null) {
             location.Coordinates = req.body.coordinates;
