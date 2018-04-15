@@ -2,7 +2,7 @@
     <div id="gmap" #gmap style="height:600px;"></div>
     <br>
     <div class="row">
-        <div class="col l5">
+        <div class="col l3">
             <div class="card z-depth-4">
                 <div class="card-content">
                     <p>My position: {{lat}}, {{lng}}</p>
@@ -41,7 +41,7 @@
                     </label>
                     <label>
                         <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.NoTime" />
-                        <span>Days Vary</span>
+                        <span>Days vary</span>
                     </label><br>
                     <h5>Meal</h5>
                     <select class="browser-default" name="country" id="countrySelector" [(ngModel)]="meal">
@@ -56,18 +56,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col l10">
+        <div class="col l9">
             <div class="card blue-grey lighten-1 z-depth-4">
                 <div class="card-content white-text">
                     <table class="highlight">
                         <thead>
                             <!-- <th>ID</th> -->
-                            <th>Day and time</th>
+                            <th>Day and Time</th>
                             <th>Meal</th>
-                            <th>Who can come</th>
-                            <th>location</th>
+                            <th>Open To</th>
+                            <th>Location</th>
                             <th>Program</th>
                         </thead>
                         <tbody>
