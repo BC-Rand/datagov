@@ -24,6 +24,15 @@ export class MealsComponent implements OnInit {
         const observable = this._httpService.getLocations();
         observable.subscribe(data => {
             this.locations = data['locations'];
+            for (let i = 0; i < this.locations.length; i++) {
+                const geocodeObservable = this._httpService.geocode(this.locations[i]['Address']);
+                geocodeObservable.subscribe(geocode => {
+                    console.log(this.locations[i]['Address']);
+                    console.log(geocode['results'][0]['geometry']['location']);
+                    this.locations[i]['position'] = geocode['results'][0]['geometry']['location'];
+                    // console.log(this.locations[i]);
+                });
+            }
         });
     }
 
