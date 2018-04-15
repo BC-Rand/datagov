@@ -5,3 +5,18 @@ th{
     font-size: large;
     text-decoration: underline;
 }
+.scroll{
+    font-size: x-large;
+    animation-timing-function: ease-in-out;
+    position: relative;
+    animation: mymove 10s infinite;
+}
+@keyframes mymove {
+    0% {color: blue}
+    0% {color: teal}
+    25%  {color: green}
+    45% { color: orange}
+    100% {color: red;}
+    from {left: 450px;}
+    to {left: 0px;}
+}

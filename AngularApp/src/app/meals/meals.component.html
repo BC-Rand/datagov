@@ -4,13 +4,14 @@
         <div class="col l5">
             <div class="card z-depth-4">
                 <div class="card-content">
-                    <p>My position: {{lat}}, {{lng}}</p>
+                    <p *ngIf="!lat" class="scroll">loading . . .</p>
+                    <p *ngIf="lat">My position: {{lat}}, {{lng}}</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col l10">
+        <div class="col l10.5">
             <div class="card blue-grey lighten-1 z-depth-4">
                 <div class="card-content white-text">
                     <table class="highlight">
