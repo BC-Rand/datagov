@@ -56,7 +56,7 @@ export class MealsComponent implements OnInit {
         observable.subscribe(data => {
             this.locations = data['locations'];
             this.displayed = this.filter(this.locations);
-            if (this.lat != '') {
+            if (this.lat !== '') {
                 // this.updateDistance();
             }
             this.createMarkers(this.displayed);
@@ -186,16 +186,16 @@ export class MealsComponent implements OnInit {
     }
 
     distanceLoop() {
-        for (let i=0; i<this.locations.length; i++) {
+        for (let i = 0; i < this.locations.length; i++) {
             this.distanceAPI(this.locations[i]);
         }
     }
     distanceAPI(location) {
-        let obs = this._httpService.getDistance(this.lat, this.lng, location['Coordinates']['lat'], location['Coordinates']['lng']);
+        const obs = this._httpService.getDistance(this.lat, this.lng, location['Coordinates']['lat'], location['Coordinates']['lng']);
         obs.subscribe(data => {
-            console.log("distanceAPI",data);
+            console.log('distanceAPI', data);
             location['Distance'] = data['rows'][0]['elements'][0]['distance']['value'];
-        })
+        });
     }
 
     sortLocationsByDist(locations) {
