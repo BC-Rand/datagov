@@ -7,10 +7,10 @@ import { HealthcareComponent } from './healthcare/healthcare.component';
 import { BenTestComponent } from './ben-test/ben-test.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: "full", component: HomeComponent },
+  { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'healthcare', component: HealthcareComponent },
   { path: 'meals', component: MealsComponent },
-  { path: 'test', component: BenTestComponent }
+  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
@@ -18,4 +18,3 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
-    

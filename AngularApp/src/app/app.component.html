@@ -1,11 +1,11 @@
 <nav class="nav-wrapper black">
-    <a href="/" class="brand-logo">ForHousing</a>
+    <a [routerLink]="['/home']" class="brand-logo">ForHousing<img class="logo-img" src="assets/img/house-light.png" alt="home"></a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a [routerLink]="['/profile']" *ngIf="user">Welcome, {{user.username}}</a></li>
-      <li><a [routerLink]="['/test']">BEN TEST</a></li>
+      <li><a [routerLink]="['/healthcare']">HEALTHCARE</a></li>
       <li><a [routerLink]="['/meals']">MEALS</a></li>
-      <li><a [routerLink]="['/']">HELP</a></li>
+      <!-- <li><a [routerLink]="['/']">HELP</a></li> -->
       <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button>  </li>
       <li *ngIf="user"><button (click)="logout()" class="btn">Logout</button>  </li>
     </ul>
@@ -45,4 +45,3 @@
 
 
 <router-outlet></router-outlet>
-  

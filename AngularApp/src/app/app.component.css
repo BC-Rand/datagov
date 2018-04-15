@@ -7,6 +7,14 @@
     border: 1px solid gray;
     padding: 10px;
 }
+
+.logo-img {
+    max-width: 45px;
+    position: relative;
+    top: 5px;
+    padding-left: 5px;
+}
+
 nav{
     text-indent: 15px;
 }
