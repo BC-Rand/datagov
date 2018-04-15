@@ -6,4 +6,10 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
   
+  registerUser(user){
+    return this._http.post('/register', user);
+  }
+  loginUser(user){
+    return this._http.post('/login', user);
+  }
 }
