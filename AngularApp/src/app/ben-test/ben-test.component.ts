@@ -11,7 +11,7 @@ export class BenTestComponent implements OnInit {
   @ViewChild('gmap') gmapElement: any
   map : google.maps.Map;
   locations;
-  geocodedLocations = [];
+  coordinateLocations = [];
   failCount = 0;
   constructor(
     private _http : HttpService
@@ -23,14 +23,15 @@ export class BenTestComponent implements OnInit {
     obs.subscribe(data => {
       this.locations = data['locations'];
       console.log(this.locations);
-      let count = 0
       for (let i=0; i<this.locations.length; i++) {
         if (this.locations[i].hasOwnProperty("Coordinates")) {
-          console.log(this.locations[i].Coordinates);
-          count++
+          this.coordinateLocations.push(this.locations[i]);
         }
       }
-      console.log(count);
+      console.log(this.coordinateLocations.length);
+      for (let i=0; i<this.coordinateLocations.length; i++) {
+        this.createMarker(this.coordinateLocations[i]);
+      }
     });
   }
 
@@ -54,7 +55,7 @@ export class BenTestComponent implements OnInit {
     obs.subscribe(data => {
       if (data['status'] == "OK") {
         locationObj.Coordinates = data['results'][0]['geometry']['location'];
-        this.geocodedLocations.push(locationObj);
+        this.coordinateLocations.push(locationObj);
       } else {
         console.log("Geocode failed", locationObj.Address, locationObj._id);
         this.failCount++;
@@ -63,8 +64,8 @@ export class BenTestComponent implements OnInit {
   }
 
   updateGeocodedLocations(i) {
-    if (i<this.geocodedLocations.length) {
-      this.updateCoordinates(this.geocodedLocations[i]);
+    if (i<this.coordinateLocations.length) {
+      this.updateCoordinates(this.coordinateLocations[i]);
       setTimeout(this.updateGeocodedLocations(++i), 100);
     }
   }
@@ -74,19 +75,15 @@ export class BenTestComponent implements OnInit {
     obs.subscribe(data => {
       console.log("updateCoordinates obs response", data)
       if (data['message'] == "Success") {
-        let markerObj = {
-          location: data['Coordinates'],
-          title: data['Name_of_Program']
-        }
-        this.createMarker(markerObj);
+        
       }
     });
   }
   createMarker(obj) {
     let marker = new google.maps.Marker({
-      position: obj.location,
+      position: obj.Coordinates,
       map: this.map,
-      title: obj.title
+      title: obj.Name_of_Program
     })
   }
 }
