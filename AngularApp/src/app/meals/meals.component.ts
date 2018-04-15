@@ -10,26 +10,51 @@ export class MealsComponent implements OnInit {
     @ViewChild('gmap') gmapElement: any;
     map: google.maps.Map;
     locations;
+    displayed;
     lat;
     lng;
+    prevWindow;
     constructor(private _httpService: HttpService) {
     }
 
     ngOnInit() {
         this.lat = '';
         this.lng = '';
-        this.getLocations();
         this.getUserLocation();
         this.initMap();
+        this.getAll();
     }
 
-    getLocations() {
+    getDay(num) {
+        const d = new Date();
+        const weekday = new Array(7);
+        weekday[0] = 'Sunday';
+        weekday[1] = 'Monday';
+        weekday[2] = 'Tuesday';
+        weekday[3] = 'Wednesday';
+        weekday[4] = 'Thursday';
+        weekday[5] = 'Friday';
+        weekday[6] = 'Saturday';
+        return weekday[d.getDay()];
+    }
+
+    getAll() {
         const observable = this._httpService.getLocations();
         observable.subscribe(data => {
             this.locations = data['locations'];
-            this.createMarkers(this.locations);
-            console.log(this.locations);
+            this.displayed = this.locations;
+            this.updateDistance();
+            this.createMarkers(this.displayed);
+            console.log(this.displayed);
         });
+    }
+
+    getNearest() {
+        this.displayed = this.locations;
+        this.displayed = this.sortLocationsByDist(this.displayed);
+        this.displayed = this.displayed.slice(0, 10);
+        this.initMap();
+        this.createMarkers(this.displayed);
     }
 
     updateDistance() {
@@ -41,17 +66,17 @@ export class MealsComponent implements OnInit {
         }
     }
 
-    sortLocationsByDist() {
-        for (let i = 0; i < this.locations.length; i++) {
-            for (let y = 0; y < this.locations.length - 1; y++) {
-                if (this.locations[y]['Distance'] > this.locations[y + 1]['Distance']) {
-                    const temp = this.locations[y];
-                    this.locations[y] = this.locations[y + 1];
-                    this.locations[y + 1] = temp;
+    sortLocationsByDist(locations) {
+        for (let i = 0; i < locations.length; i++) {
+            for (let y = 0; y < locations.length - 1; y++) {
+                if (locations[y]['Distance'] > locations[y + 1]['Distance']) {
+                    const temp = locations[y];
+                    locations[y] = locations[y + 1];
+                    locations[y + 1] = temp;
                 }
             }
         }
-        console.log(this.locations);
+        return locations;
     }
 
     initMap() {
@@ -61,16 +86,32 @@ export class MealsComponent implements OnInit {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-        console.log(this.map);
     }
 
     createMarkers(locations) {
+        let prevWindow;
         for (let i = 0; i < locations.length; i++) {
             if (locations[i].hasOwnProperty('Coordinates')) {
                 const marker = new google.maps.Marker({
                     position: locations[i].Coordinates,
                     map: this.map,
                     title: locations[i].Name_of_Program
+                });
+                marker.addListener('click', function () {
+                    if (navigator.geolocation) {
+                        // tslint:disable-next-line:max-line-length
+                        const contentString = '<h6>' + locations[i]['Name_of_Program'] + '</h6><div><a target="blank_" href="https://www.google.com/maps/dir/?api=1&origin=' + this.lat + ',' + this.lng + '&destination=' + locations[i]['Coordinates']['lat'] + ',' + locations[i]['Coordinates']['lng'] + '&z=10&t=h&hl=en-US&gl=US&mapclient=apiv3">Get Directions</a>';
+                        const infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                            position: marker.getPosition(),
+                            maxWidth: 180,
+                        });
+                        if (prevWindow) {
+                            prevWindow.close();
+                        }
+                        prevWindow = infowindow;
+                        infowindow.open(this.map);
+                    }
                 });
             }
         }
@@ -79,11 +120,8 @@ export class MealsComponent implements OnInit {
     getUserLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                console.log(position.coords.latitude, position.coords.longitude);
                 this.lat = position.coords.latitude;
                 this.lng = position.coords.longitude;
-                this.updateDistance();
-                this.sortLocationsByDist();
             });
         } else {
             this.lat = 'Geolocation is not supported by this browser.';
