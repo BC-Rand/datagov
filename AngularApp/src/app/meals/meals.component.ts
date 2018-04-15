@@ -223,6 +223,7 @@ export class MealsComponent implements OnInit {
     createMarkers(locations) {
         this.initMap();
         let prevWindow;
+        const latlng = this.lat + ',' + this.lng;
         for (let i = 0; i < locations.length; i++) {
             if (locations[i].hasOwnProperty('Coordinates')) {
                 const marker = new google.maps.Marker({
@@ -233,7 +234,7 @@ export class MealsComponent implements OnInit {
                 marker.addListener('click', function () {
                     if (navigator.geolocation) {
                         // tslint:disable-next-line:max-line-length
-                        const contentString = '<h6>' + locations[i]['Name_of_Program'] + '</h6><div><a target="blank_" href="https://www.google.com/maps/dir/?api=1&origin=' + this.lat + ',' + this.lng + '&destination=' + locations[i]['Coordinates']['lat'] + ',' + locations[i]['Coordinates']['lng'] + '&z=10&t=h&hl=en-US&gl=US&mapclient=apiv3">Get Directions</a>';
+                        const contentString = '<h6>' + locations[i]['Name_of_Program'] + '</h6><div><a target="blank_" href="https://www.google.com/maps/dir/?api=1&origin=' + latlng + '&destination=' + locations[i]['Coordinates']['lat'] + ',' + locations[i]['Coordinates']['lng'] + '&z=10&t=h&hl=en-US&gl=US&mapclient=apiv3">Get Directions</a>';
                         const infowindow = new google.maps.InfoWindow({
                             content: contentString,
                             position: marker.getPosition(),
