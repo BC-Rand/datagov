@@ -1,8 +1,18 @@
 #loginDiv {
     position: absolute;
     top: 80px;
-    right: 0;
+    right: 20px;
     width: 200px;
-    height: 100px;
-    border: 1px solid black;
+    height: auto;
+    border: 1px solid gray;
+    padding: 10px;
+}
+nav{
+    text-indent: 15px;
+}
+li{
+    margin-right: 40px;
+}
+span{
+    color: red;
 }
