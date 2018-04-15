@@ -60,8 +60,8 @@ dataset = [
       "Day_Time": "Monday - Friday: 6:15 - 7:00 A.M.",
       "Meal_Served": "Breakfast",
       "People_Served": "OPEN TO ALL",
-      "Address": "2515 Western Ave.,  Seattle",
-      "Location": "2515 Western Ave.,  Seattle",
+      "Address": "2515 Western Ave., Seattle",
+      "Location": "2515 Western Ave., Seattle",
       "Name_of_Program": "Millionair Club Charity"
     },
     {
@@ -716,7 +716,7 @@ dataset = [
       "Day_Time": "Monday - Friday: 12:30 - 1:00 P.M.",
       "Meal_Served": "Lunch",
       "People_Served": "Youth 13-21",
-      "Address": "1828 Yale Avenue (on the corner of Denny and Stewart)",
+      "Address": "1828 Yale Avenue",
       "Location": "1828 Yale Avenue (on the corner of Denny and Stewart)",
       "Name_of_Program": "Youth Care's Orion Center"
     },
@@ -1282,9 +1282,9 @@ dataset = [
     }
 ]
 
-for (let i=0; i<3; i++) {
+for (let i=0; i<dataset.length; i++) {
     let newLocation = new locations(dataset[i]);
-   
+    console.log(newLocation);
     newLocation.save(function(err) {
         if (err) {
             console.log(err);

@@ -11,6 +11,7 @@ export class BenTestComponent implements OnInit {
   @ViewChild('gmap') gmapElement: any
   map : google.maps.Map;
   locations;
+  geocodedLocations = [];
   coordinateLocations = [];
   constructor(
     private _http : HttpService
@@ -25,8 +26,11 @@ export class BenTestComponent implements OnInit {
       for (let i=0; i<this.locations.length; i++) {
         if (this.locations[i].hasOwnProperty("Coordinates")) {
           this.coordinateLocations.push(this.locations[i]);
+          this.locations.splice(i,1);
+          i--;
         }
       }
+      console.log(this.locations);
       console.log(this.coordinateLocations.length);
       for (let i=0; i<this.coordinateLocations.length; i++) {
         this.createMarker(this.coordinateLocations[i]);
@@ -54,16 +58,16 @@ export class BenTestComponent implements OnInit {
     obs.subscribe(data => {
       if (data['status'] == "OK") {
         locationObj.Coordinates = data['results'][0]['geometry']['location'];
-        this.coordinateLocations.push(locationObj);
+        this.geocodedLocations.push(locationObj);
       } else {
-        console.log("Geocode failed", locationObj.Address, locationObj._id);
+        console.log("Geocode failed", data);
       }
     });
   }
 
   updateGeocodedLocations(i) {
-    if (i<this.coordinateLocations.length) {
-      this.updateCoordinates(this.coordinateLocations[i]);
+    if (i<this.geocodedLocations.length) {
+      this.updateCoordinates(this.geocodedLocations[i]);
       setTimeout(this.updateGeocodedLocations(++i), 100);
     }
   }
@@ -76,6 +80,12 @@ export class BenTestComponent implements OnInit {
         
       }
     });
+  }
+  logGeocodedLocations() {
+    console.log(this.geocodedLocations);
+    for (let i=0; i<this.geocodedLocations.length; i++) {
+
+    }
   }
   createMarker(obj) {
     let marker = new google.maps.Marker({

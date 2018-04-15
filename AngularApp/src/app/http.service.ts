@@ -20,7 +20,8 @@ export class HttpService {
     }
     geocode(address) {
         address = encodeURI(address);
-        address = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "key=AIzaSyCSxIGubowe1uJ3mn5o6BBO5QiZ39an97w";
+        address = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCSxIGubowe1uJ3mn5o6BBO5QiZ39an97w";
+        console.log("Address: ", address);
         return this._http.get(address);
     }
     updateCoordinates(_id, coordinatesObj) {
