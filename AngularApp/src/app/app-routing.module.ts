@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-
-
 import { HomeComponent } from './home/home.component';
 import { MealsComponent } from './meals/meals.component';
 import { HealthcareComponent } from './healthcare/healthcare.component';
+import { BenTestComponent } from './ben-test/ben-test.component';
 
 const routes: Routes = [
   { path: '', pathMatch: "full", component: HomeComponent },
-  {path: 'healthcare', component: HealthcareComponent}
+  { path: 'healthcare', component: HealthcareComponent },
+  { path: 'meals', component: MealsComponent },
+  { path: 'test', component: BenTestComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
+    
