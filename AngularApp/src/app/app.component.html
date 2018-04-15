@@ -11,7 +11,7 @@
     </ul>
 </nav>
 
-<div *ngIf="loginDisplayBool" id="loginDiv" class="card">
+<div *ngIf="loginDisplayBool" id="loginDiv" class="card z-depth-2">
   <form (submit)="login()" *ngIf="!registerDisplayBool">
       <label for="username">Username</label>
       <input [(ngModel)]="existinguser.username" type="text" name="username">
