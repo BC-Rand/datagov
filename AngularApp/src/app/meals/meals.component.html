@@ -1,21 +1,40 @@
-<p>My position: {{lat}}, {{lng}}</p>
-<table>
-    <thead>
-        <th>ID</th>
-        <th>Day and time</th>
-        <th>Meal</th>
-        <th>Who can come</th>
-        <th>location</th>
-        <th>Program</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let location of locations">
-            <td>{{location._id}}</td>
-            <td>{{location.Day_Time}}</td>
-            <td>{{location.Meal_Served}}</td>
-            <td>{{location.People_Served}}</td>
-            <td>{{location.Location}}</td>
-            <td>{{location.Name_of_Program}}</td>
-        </tr>
-    </tbody>
-</table>
+<div id="container">
+    <br>
+    <div class="row">
+        <div class="col l5">
+            <div class="card z-depth-4">
+                <div class="card-content">
+                    <p>My position: {{lat}}, {{lng}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l10">
+            <div class="card blue-grey lighten-1 z-depth-4">
+                <div class="card-content white-text">
+                    <table class="highlight">
+                        <thead>
+                            <!-- <th>ID</th> -->
+                            <th>Day and time</th>
+                            <th>Meal</th>
+                            <th>Who can come</th>
+                            <th>location</th>
+                            <th>Program</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let location of locations">
+                                <!-- <td>{{location._id}}</td> -->
+                                <td>{{location.Day_Time}}</td>
+                                <td>{{location.Meal_Served}}</td>
+                                <td>{{location.People_Served}}</td>
+                                <td>{{location.Location}}</td>
+                                <td>{{location.Name_of_Program}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
