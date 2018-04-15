@@ -8,10 +8,16 @@ import { HttpService } from '../http.service';
 })
 export class MealsComponent implements OnInit {
     locations;
-    constructor(private _httpService: HttpService) { }
+    lat;
+    lng;
+    constructor(private _httpService: HttpService) {
+    }
 
     ngOnInit() {
+        this.lat = '';
+        this.lng = '';
         this.getLocations();
+        this.getUserLocation();
     }
 
     getLocations() {
@@ -21,4 +27,15 @@ export class MealsComponent implements OnInit {
         });
     }
 
+    getUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                console.log(position.coords.latitude, position.coords.longitude);
+                this.lat = position.coords.latitude;
+                this.lng = position.coords.longitude;
+            });
+        } else {
+            this.lat = 'Geolocation is not supported by this browser.';
+        }
+    }
 }
