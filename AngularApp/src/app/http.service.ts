@@ -34,11 +34,4 @@ export class HttpService {
             coordinates: coordinatesObj
         })
     }
-  
-    registerUser(user){
-        return this._http.post('/register', user);
-    }
-    loginUser(user){
-        return this._http.post('/login', user);
-    }
 }
