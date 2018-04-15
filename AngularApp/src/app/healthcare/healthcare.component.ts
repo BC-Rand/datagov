@@ -14,6 +14,7 @@ export class HealthcareComponent implements OnInit {
   street: any;
   // zip: any;
 
+
   constructor(private _httpService: HttpService) { }
 
   ngOnInit() {
