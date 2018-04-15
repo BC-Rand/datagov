@@ -14,7 +14,20 @@ export class MealsComponent implements OnInit {
     lat;
     lng;
     prevWindow;
+    week;
+    meal;
     constructor(private _httpService: HttpService) {
+        this.week = {
+            Sunday: true,
+            Monday: true,
+            Tuesday: true,
+            Wednesday: true,
+            Thursday: true,
+            Friday: true,
+            Saturday: true,
+            NoTime: true,
+        };
+        this.meal = 'All';
     }
 
     ngOnInit() {
@@ -42,7 +55,7 @@ export class MealsComponent implements OnInit {
         const observable = this._httpService.getLocations();
         observable.subscribe(data => {
             this.locations = data['locations'];
-            this.displayed = this.locations;
+            this.displayed = this.filter(this.locations);
             this.updateDistance();
             this.createMarkers(this.displayed);
             console.log(this.displayed);
@@ -50,11 +63,114 @@ export class MealsComponent implements OnInit {
     }
 
     getNearest() {
-        this.displayed = this.locations;
+        this.displayed = this.filter(this.locations);
         this.displayed = this.sortLocationsByDist(this.displayed);
         this.displayed = this.displayed.slice(0, 10);
-        this.initMap();
         this.createMarkers(this.displayed);
+    }
+
+    filter(locations) {
+        const filtered = [];
+        for (let i = 0; i < locations.length; i++) {
+            if (locations[i]['Sunday'].length > 0 && this.week.Sunday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Monday'].length > 0 && this.week.Monday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Tuesday'].length > 0 && this.week.Tuesday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Wednesday'].length > 0 && this.week.Wednesday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Thursday'].length > 0 && this.week.Thursday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Friday'].length > 0 && this.week.Friday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (locations[i]['Saturday'].length > 0 && this.week.Saturday) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            } else if (this.week.NoTime) {
+                if (this.meal !== 'All') {
+                    if (locations[i]['Meal_Served'] === this.meal) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Monday) {
+                        filtered.push(locations[i]);
+                    } else if (locations[i]['Meal_Served'] === this.meal && this.week.Tuesday) {
+                        filtered.push(locations[i]);
+                    }
+                } else {
+                    filtered.push(locations[i]);
+                }
+            }
+        }
+        return filtered;
     }
 
     updateDistance() {
@@ -89,6 +205,7 @@ export class MealsComponent implements OnInit {
     }
 
     createMarkers(locations) {
+        this.initMap();
         let prevWindow;
         for (let i = 0; i < locations.length; i++) {
             if (locations[i].hasOwnProperty('Coordinates')) {
@@ -127,4 +244,5 @@ export class MealsComponent implements OnInit {
             this.lat = 'Geolocation is not supported by this browser.';
         }
     }
+
 }

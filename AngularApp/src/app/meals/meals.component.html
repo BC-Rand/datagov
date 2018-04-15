@@ -10,7 +10,48 @@
             </div>
             <div class="card z-depth-4">
                 <div class="card-content">
-                    <button (click)="getNearest()">Show nearest 10</button>
+                    <h5>Day</h5>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Sunday" />
+                        <span>Sunday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Monday" />
+                        <span>Monday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Tuesday" />
+                        <span>Tuesday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Wednesday" />
+                        <span>Wednesday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Thursday" />
+                        <span>Thursday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Friday" />
+                        <span>Friday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.Saturday" />
+                        <span>Saturday</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" [(ngModel)]="week.NoTime" />
+                        <span>Days Vary</span>
+                    </label><br>
+                    <h5>Meal</h5>
+                    <select class="browser-default" name="country" id="countrySelector" [(ngModel)]="meal">
+                        <option value="All" selected>All</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select><br>
+                    <button (click)="getNearest()">Show Nearest Ten</button>
+                    <button (click)="getAll()">Show All</button>
                 </div>
             </div>
         </div>
