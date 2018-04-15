@@ -1281,10 +1281,11 @@ dataset = [
       "Name_of_Program": "Friends of Francois"
     }
 ]
-
+console.log(dataset.length);
 for (let i=0; i<dataset.length; i++) {
-    let newLocation = new locations(dataset[i]);
-    newLocation.save(function(err) {
+  let newLocation = new locations(dataset[i]);
+  newLocation.save(function(err) {
+    console.log("in save function   i: " + i);
         if (err) {
             console.log(err);
         }
