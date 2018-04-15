@@ -1282,7 +1282,7 @@ dataset = [
     }
 ]
 
-for (let i=0; i<3; i++) {
+for (let i=0; i<dataset.length; i++) {
     let newLocation = new locations(dataset[i]);
     newLocation.save(function(err) {
         if (err) {
