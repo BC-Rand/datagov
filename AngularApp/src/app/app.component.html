@@ -1,46 +1,55 @@
 <nav class="nav-wrapper black">
-    <a [routerLink]="['/home']" class="brand-logo">ForHousing<img class="logo-img" src="assets/img/house-light.png" alt="home"></a>
+    <a [routerLink]="['/home']" class="brand-logo">ForHousing
+        <img class="logo-img" src="assets/img/house-light.png" alt="home">
+    </a>
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a [routerLink]="['/profile']" *ngIf="user">Welcome, {{user.username}}</a></li>
-      <li><a [routerLink]="['/healthcare']">HEALTHCARE</a></li>
-      <li><a [routerLink]="['/meals']">MEALS</a></li>
-      <!-- <li><a [routerLink]="['/']">HELP</a></li> -->
-      <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button>  </li>
-      <li *ngIf="user"><button (click)="logout()" class="btn">Logout</button>  </li>
+        <!-- <li><a [routerLink]="['/profile']" *ngIf="user">Welcome, {{user.username}}</a></li> -->
+        <li><a [routerLink]="['/healthcare']">HEALTHCARE</a></li>
+        <li><a [routerLink]="['/meals']">MEALS</a></li>
+        <!-- <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button></li>
+        <li *ngIf="user"><button (click)="logout()" class="btn">Logout</button></li> -->
     </ul>
 </nav>
 
-<div *ngIf="loginDisplayBool" id="loginDiv" class="card z-depth-2">
-  <form (submit)="login()" *ngIf="!registerDisplayBool">
-      <label for="username">Username</label>
-      <input [(ngModel)]="existinguser.username" type="text" name="username">
-      <label for="password">Password</label>
-      <input [(ngModel)]="existinguser.password" type="password" name="password">
-      <p>Not a user? <a (click)="toggleRegisterDisplay()">Register here</a></p>
-      <span *ngIf="errors">
-          {{errors}}
-      </span>
-      <button class="btn waves-effect waves-light" (click)="toggleLoginDisplay()">cancel</button>
-      <button class="btn waves-effect waves-light right"type="submit"><i class="material-icons">send</i></button>
-  </form>
-  <form (submit)="register()" *ngIf="registerDisplayBool">
-      <label for="username">Username</label>
-      <input [(ngModel)]="newuser.username" type="text" name="username">
-      <label for="password">Password</label>
-      <input [(ngModel)]="newuser.password" type="password" name="password">
-      <label for="PW_confirm">Confirm PW</label>
-      <input [(ngModel)]="newuser.PW_confirm" type="password" name="PW_confirm">
-      <p>Already a user? <a (click)="toggleRegisterDisplay()">Login</a></p>
-      <span *ngIf="errors">
-          {{errors}}
-      </span>
+<!-- <div *ngIf="loginDisplayBool" id="loginDiv" class="card z-depth-2">
+    <form (submit)="login()" *ngIf="!registerDisplayBool">
+        <label for="username">Username</label>
+        <input [(ngModel)]="existinguser.username" type="text" name="username">
+        <label for="password">Password</label>
+        <input [(ngModel)]="existinguser.password" type="password" name="password">
+        <p>Not a user?
+            <a (click)="toggleRegisterDisplay()">Register here</a>
+        </p>
+        <span *ngIf="errors">
+            {{errors}}
+        </span>
+        <button class="btn waves-effect waves-light" (click)="toggleLoginDisplay()">cancel</button>
+        <button class="btn waves-effect waves-light right" type="submit">
+            <i class="material-icons">send</i>
+        </button>
+    </form>
+    <form (submit)="register()" *ngIf="registerDisplayBool">
+        <label for="username">Username</label>
+        <input [(ngModel)]="newuser.username" type="text" name="username">
+        <label for="password">Password</label>
+        <input [(ngModel)]="newuser.password" type="password" name="password">
+        <label for="PW_confirm">Confirm PW</label>
+        <input [(ngModel)]="newuser.PW_confirm" type="password" name="PW_confirm">
+        <p>Already a user?
+            <a (click)="toggleRegisterDisplay()">Login</a>
+        </p>
+        <span *ngIf="errors">
+            {{errors}}
+        </span>
 
-      <button class="btn waves-effect waves-light" (click)="toggleLoginDisplay()">cancel</button>  
-      <button class="btn waves-effect waves-light right" type="submit"><i class="material-icons">send</i></button>
-  </form>
+        <button class="btn waves-effect waves-light" (click)="toggleLoginDisplay()">cancel</button>
+        <button class="btn waves-effect waves-light right" type="submit">
+            <i class="material-icons">send</i>
+        </button>
+    </form>
 
-</div>
+</div> -->
 
 
 

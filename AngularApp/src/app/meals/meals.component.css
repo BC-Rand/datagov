@@ -9,3 +9,8 @@ th{
 label span {
     width: 120px;
 }
+
+a {
+    color: white;
+    text-decoration: underline;
+}
