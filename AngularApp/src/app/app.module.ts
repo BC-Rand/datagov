@@ -9,14 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MealsComponent } from './meals/meals.component';
 import { HomeComponent } from './home/home.component';
+import { HealthcareComponent } from './healthcare/healthcare.component';
 import { BenTestComponent } from './ben-test/ben-test.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     MealsComponent,
     HomeComponent,
+    HealthcareComponent,
     BenTestComponent
   ],
   imports: [
