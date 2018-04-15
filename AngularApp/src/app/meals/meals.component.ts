@@ -56,7 +56,9 @@ export class MealsComponent implements OnInit {
         observable.subscribe(data => {
             this.locations = data['locations'];
             this.displayed = this.filter(this.locations);
-            this.updateDistance();
+            if (this.lat != '') {
+                // this.updateDistance();
+            }
             this.createMarkers(this.displayed);
             console.log(this.displayed);
         });
@@ -191,7 +193,7 @@ export class MealsComponent implements OnInit {
     distanceAPI(location) {
         let obs = this._httpService.getDistance(this.lat, this.lng, location['Coordinates']['lat'], location['Coordinates']['lng']);
         obs.subscribe(data => {
-            // console.log("distanceAPI",data);
+            console.log("distanceAPI",data);
             location['Distance'] = data['rows'][0]['elements'][0]['distance']['value'];
         })
     }
@@ -253,12 +255,7 @@ export class MealsComponent implements OnInit {
             navigator.geolocation.getCurrentPosition(position => {
                 this.lat = position.coords.latitude;
                 this.lng = position.coords.longitude;
-                this.updateDistance();
-                const marker = new google.maps.Marker({
-                    position: {lat:this.lat,lng:this.lng},
-                    map: this.map,
-                    title: "You"
-                });
+                // this.updateDistance();
             });
         } else {
             this.lat = 'Geolocation is not supported by this browser.';
