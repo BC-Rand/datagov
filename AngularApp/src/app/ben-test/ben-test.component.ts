@@ -12,7 +12,6 @@ export class BenTestComponent implements OnInit {
   map : google.maps.Map;
   locations;
   coordinateLocations = [];
-  failCount = 0;
   constructor(
     private _http : HttpService
   ) { }
@@ -58,7 +57,6 @@ export class BenTestComponent implements OnInit {
         this.coordinateLocations.push(locationObj);
       } else {
         console.log("Geocode failed", locationObj.Address, locationObj._id);
-        this.failCount++;
       }
     });
   }
