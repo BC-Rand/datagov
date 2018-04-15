@@ -1281,8 +1281,8 @@ dataset = [
       "Name_of_Program": "Friends of Francois"
     }
 ]
-console.log("dataset.length: " + dataset.length);
-for (let i=0; i<dataset.length; i++) {
+
+for (let i=0; i<3; i++) {
     let newLocation = new locations(dataset[i]);
     newLocation.save(function(err) {
         if (err) {
