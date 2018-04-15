@@ -69,6 +69,9 @@ var LocationsSchema = new mongoose.Schema({
     Name_of_Program : {
         type: String
     },
+    Coordinates: {
+        type: Object
+    }
 })
 mongoose.model('locations', LocationsSchema);
 var locations = mongoose.model('locations');
@@ -118,6 +121,25 @@ app.get('/allLocations', function (req, res) {
         }
     })
 })
+
+app.post('/updatecoordinates', function(req, res) {
+    console.log("/updatecoordinates");
+    console.log(req.body);
+    locations.findOne({_id: req.body._id}, function(err, location) {
+        if (location != null) {
+            location.Coordinates = req.body.coordinates;
+            location.save(function(err) {
+                if (err) {
+                    res.json({message:"Fail", data:err});
+                } else {
+                    res.json({message:"Success", data:location});
+                }
+            })
+        } else {
+            res.json({message:"Fail", data:{}});
+        }
+    });
+});
 
 app.post('/login', function(req, res) {
     User.findOne({username:req.body.username}, function(err, user) {
