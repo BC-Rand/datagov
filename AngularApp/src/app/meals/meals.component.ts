@@ -56,7 +56,7 @@ export class MealsComponent implements OnInit {
         observable.subscribe(data => {
             this.locations = data['locations'];
             this.displayed = this.filter(this.locations);
-            // this.updateDistance();
+            this.updateDistance();
             this.createMarkers(this.displayed);
             console.log(this.displayed);
         });
@@ -212,7 +212,7 @@ export class MealsComponent implements OnInit {
     initMap() {
         const mapProp = {
             center: new google.maps.LatLng(47.608380, -122.359),
-            zoom: 10,
+            zoom: 11,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
