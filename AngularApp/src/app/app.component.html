@@ -3,7 +3,7 @@
 
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a [routerLink]="['/profile']" *ngIf="user">Welcome, {{user.username}}</a></li>
-      <li><a [routerLink]="['/test']">BEN-TEST</a></li>
+      <li><a [routerLink]="['/test']">BEN TEST</a></li>
       <li><a [routerLink]="['/meals']">MEALS</a></li>
       <li><a [routerLink]="['/']">HELP</a></li>
       <li *ngIf="!user"><button (click)="toggleLoginDisplay()" class="btn">Login</button>  </li>
