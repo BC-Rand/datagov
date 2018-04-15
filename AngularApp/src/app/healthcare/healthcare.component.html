@@ -10,9 +10,10 @@
   Rehabiltation Facilities near you:
 </p>
 <ol>
-  <li *ngFor="let x of hospital">{{ x.facility_name }}
+  <li *ngFor="let x of hospital">{{ x.facility_name }} 
     <p>Address: {{x.address_line_1}} {{x.location_city}}, {{x.location_state}} {{x.zip_code}}</p>
     <p>Phone: {{x.phonenumber}}</p>
     <p>Facility Type: {{x.ownership_type}}</p>
+    <p>Distance: {{x.distance}}</p>
   </li> 
 </ol>
