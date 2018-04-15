@@ -45,8 +45,10 @@ export class HealthcareComponent implements OnInit {
             console.log(dist);
             console.log("i: " + i);
             let distance = dist['rows'][0].elements[0].distance.text;
-            console.log(distance);
+            let metric = dist['rows'][0].elements[0].distance.value;
+            console.log(metric);
             this.hospital[i]['distance'] = distance;
+            this.hospital[i]['metric'] = metric;
             // this.distList.push(distance);
             console.log(this.hospital);
           })
