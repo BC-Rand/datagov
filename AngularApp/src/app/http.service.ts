@@ -13,6 +13,11 @@ export class HttpService {
         // tslint:disable-next-line:max-line-length
         return this._http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${street}&key=AIzaSyBdelVti2c9ZyIEel-jJgWk1lz8X-uvICY`);
     }
+
+    getDistance(originlat,originlng,destinationlat,destinationlng){
+        return this._http.get(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${originlat},${originlng}&destinations=${destinationlat},${destinationlng}&key=AIzaSyDh8Nw35qjH9Zl_lqgkCboAwaDrreUjs8k`);
+      }
+
     registerUser(user) {
         return this._http.post('/register', user);
     }
