@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '../http.service';
+import {  } from '@types/googlemaps';
 
 @Component({
     selector: 'app-meals',
