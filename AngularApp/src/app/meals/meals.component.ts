@@ -57,7 +57,7 @@ export class MealsComponent implements OnInit {
             this.locations = data['locations'];
             this.displayed = this.filter(this.locations);
             if (this.lat !== '') {
-                // this.updateDistance();
+                this.updateDistance();
             }
             this.createMarkers(this.displayed);
             console.log(this.displayed);
@@ -256,7 +256,7 @@ export class MealsComponent implements OnInit {
             navigator.geolocation.getCurrentPosition(position => {
                 this.lat = position.coords.latitude;
                 this.lng = position.coords.longitude;
-                // this.updateDistance();
+                this.updateDistance();
             });
         } else {
             this.lat = 'Geolocation is not supported by this browser.';
