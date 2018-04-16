@@ -55,6 +55,7 @@ export class HealthcareComponent implements OnInit {
         }
       })
     })
+    this.street = "";
   }
 
   heapifySubArray(arr, start) {
