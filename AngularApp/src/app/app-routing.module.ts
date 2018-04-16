@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'healthcare', component: HealthcareComponent },
   { path: 'meals', component: MealsComponent },
-  { path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
