@@ -115,7 +115,7 @@ app.get('/allLocations', function (req, res) {
     console.log('getting locations in server')
     locations.find({},function(err, locations) {
         if(err){
-            console.log("e0rr0r",)
+            console.log("e0rr0r")
         }else{
             res.json({message:'The Locations', locations: locations})
         }
