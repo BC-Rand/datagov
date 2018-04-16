@@ -1,19 +1,44 @@
-<p>Enter your current street address:</p>
-<form (submit)='getCurrentLocation()'>
-  <label for="street">Street:</label><br>
-  <input type="text" name="street" [(ngModel)]='street'><br>
-  <input type="submit" name="Submit">
-</form>
-
-
-<p>
-  Rehabiltation Facilities near you:
-</p>
-<ol>
-  <li *ngFor="let x of hospital">{{ x.facility_name }} 
-    <p>Address: {{x.address_line_1}} {{x.location_city}}, {{x.location_state}} {{x.zip_code}}</p>
-    <p>Phone: {{x.phonenumber}}</p>
-    <p>Facility Type: {{x.ownership_type}}</p>
-    <p>Distance: {{x.distance}}</p>
-  </li> 
-</ol>
+<div id="container">
+    <div class="row">
+      <h3>Rehabiltation Healthcare Services Finder</h3>
+      <div class="col l3">
+        <div class="card z-depth-4">
+            <div class="card-content">
+              <form (submit)='getCurrentLocation()'>
+                <label for="street">Please enter your street address:</label><br>
+                <input type="text" name="street" placeholder="Ex: 10777 Main st Bellevue, WA" [(ngModel)]='street'><br>
+                <input type="submit" name="Submit" class="btn">
+              </form>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+      <!-- <div class="col 19"> -->
+        <div class="card blue-grey lighten-1 z-depth-4">
+            <div class="card-content white-text">
+                <table class="highlight">
+                    <thead>
+                        <!-- <th>ID</th> -->
+                        <th>Facility Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Facility Type</th>
+                        <th>Distance</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of hospital">
+                            <!-- <td>{{location._id}}</td> -->
+                            <td>{{ x.facility_name }}</td>
+                            <td>{{x.address_line_1}} {{x.location_city}}, {{x.location_state}} {{x.zip_code}}</td>
+                            <td>{{ x.phonenumber }}</td>
+                            <td>{{ x.ownership_type }}</td>
+                            <td>{{ x.distance }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!-- </div> -->
+      </div>
+    </div>
+</div>
